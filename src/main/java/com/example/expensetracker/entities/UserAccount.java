@@ -22,7 +22,5 @@ public class UserAccount {
     @Getter
     @Setter
     private String password;
-
-    // Getters and setters
 }
 
