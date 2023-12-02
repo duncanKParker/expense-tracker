@@ -40,12 +40,14 @@ public class UserAccountController {
 
     // User login
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
-        boolean authenticated = userAccountService.authenticateUser(loginRequest);
-        if (authenticated) {
-            return new ResponseEntity<>("Login successful", HttpStatus.OK);
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        Long userId = userAccountService.authenticateUserAndGetId(loginRequest);
+        if (userId != null) {
+            // Return the user ID
+            return new ResponseEntity<>(userId, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }
     }
+
 }

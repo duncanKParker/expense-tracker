@@ -23,9 +23,13 @@ public class UserAccountService {
     }
 
     // Authenticate user
-    public boolean authenticateUser(LoginRequest loginRequest) {
+    public Long authenticateUserAndGetId(LoginRequest loginRequest) {
         UserAccount user = userAccountRepository.findByUsername(loginRequest.getUsername());
-        return user != null && user.getPassword().equals(loginRequest.getPassword());
+        if(user != null && user.getPassword().equals(loginRequest.getPassword())){
+            return user.getId();
+        } else {
+            return null;
+        }
     }
 }
 

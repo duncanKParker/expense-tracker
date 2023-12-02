@@ -24,10 +24,14 @@ public class Expense {
     @Setter
     private String description;
 
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
 
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "expense_category_id")
     private ExpenseCategory category;
